@@ -11,6 +11,6 @@ RUN npm install
 # Copia todo o código necessário para rodar a aplicação
 COPY ./ ./
 # Expõe a porta em que a aplicação irá rodar
-EXPOSE 3000
+EXPOSE 4455
 # Inicializa a aplicação
-CMD [ "npm", "start" ]
+CMD [ "sh", "./start.sh" ]
