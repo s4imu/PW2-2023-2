@@ -1,7 +1,7 @@
 import { readdir, readFile, writeFile } from "fs/promises"
 import { createServer } from "http";
 import { config as dotenvConfig } from "dotenv"
-import createLink from "./utils/links";
+import createLink, { createLinkHome } from "./utils/links";
 
 dotenvConfig();
 const DIR  = process.env.DIR ?? "./public";
@@ -17,6 +17,7 @@ const server = createServer(async (req, res) => {
     } else if(req.url == '/favicon.ico'){
         res.end()
     } else {
+        await writeFile(`${DIR}${req.url}`, createLinkHome(), { flag: 'a' })
         const content  = await readFile(`${DIR}${req.url}`);
         res.end(content)
     }

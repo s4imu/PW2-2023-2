@@ -3,7 +3,7 @@ function createLink(filename: string) {
 }
 
 export function createLinkHome() {
-    return `<a href="/">Voltar</a><br>\n`;
+    return `<br><a href="/">Voltar</a><br>\n`;
 }
 
 export default createLink
