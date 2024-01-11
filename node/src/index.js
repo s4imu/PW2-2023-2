@@ -35,11 +35,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _a;
+var _a, _b;
 Object.defineProperty(exports, "__esModule", { value: true });
 var promises_1 = require("fs/promises");
 var http_1 = require("http");
-var DIR = (_a = process.argv[2]) !== null && _a !== void 0 ? _a : "../public";
+var dotenv_1 = require("dotenv");
+dotenv_1.config;
+var DIR = (_a = process.env.DIR) !== null && _a !== void 0 ? _a : "./public";
+var PORT = (_b = process.env.PORT) !== null && _b !== void 0 ? _b : 3333;
 var server = (0, http_1.createServer)(function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var files;
     return __generator(this, function (_a) {
@@ -54,4 +57,6 @@ var server = (0, http_1.createServer)(function (req, res) { return __awaiter(voi
         }
     });
 }); });
-server.listen(3333);
+server.listen(PORT, function () {
+    console.log("Aplica\u00E7\u00E3o rodando na porta ".concat(PORT));
+});
