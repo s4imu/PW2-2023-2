@@ -1,0 +1,38 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+form span {
+  font-size: 28px;
+}
+
+form input {
+  width: 64px;
+  height: 32px;
+  font-size: 24px;
+}
+
+form button {
+  font-size: 20px;
+  border-radius: 10%;
+  background-color: #fff;
+  padding: 4px 8px;
+  font-weight: bold;
+  border: whitesmoke;
+  outline: none;
+}
+
+#content {
+  text-align: center;
+  margin-top: 16px;
+}
