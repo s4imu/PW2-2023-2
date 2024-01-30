@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/s4imu/PW2-2023-2#readme",
   "dependencies": {
+    "@prisma/client": "^5.9.0",
     "@types/morgan": "^1.9.9",
     "dotenv": "^16.3.1",
     "envalid": "^8.0.0",

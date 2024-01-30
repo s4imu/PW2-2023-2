@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
-import router from './router/router';
+import router from './router';
 
 import validateEnv from './utils/validateEnv';
 
