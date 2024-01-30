@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
+import router from './router/router';
 
 import validateEnv from './utils/validateEnv';
 
@@ -12,9 +13,9 @@ const app = express();
 
 app.use(morgan('combined'));
 
-app.use('/', (req, res) => {
-  res.send('Hello World!!!');
-});
+app.use('/img', express.static(`${__dirname}/../public/img`));
+
+app.use(router);
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
