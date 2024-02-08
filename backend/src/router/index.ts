@@ -1,5 +1,7 @@
-import express from 'express';
-import produtoRouter from '../resources/produto/product.router';
-const router = express.Router();
-router.use('/produto', produtoRouter);
-export default router;
+import { Router } from 'express'
+import v1Router from './routerV1'
+const router = Router()
+
+router.use("/v1", v1Router)
+
+export default router 
