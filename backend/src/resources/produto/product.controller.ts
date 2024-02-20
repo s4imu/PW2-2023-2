@@ -11,7 +11,7 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 const index = async function (req: Request, res: Response) {
   try {
     const produtos = await listProdutos();
-    res.status(StatusCodes.CREATED).json(produtos);
+    res.status(StatusCodes.OK).json(produtos);
   } catch (err) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
   }
@@ -20,7 +20,7 @@ const create = async function (req: Request, res: Response) {
   const produto: createProdutoDto = req.body;
   try {
     if (await produtoAlreadyExists(produto.nome)) {
-      res.status(StatusCodes.BAD_REQUEST).json({ msg: 'Produto já existe' });
+      res.status(StatusCodes.CONFLICT).json(ReasonPhrases.CONFLICT);
     } else {
       const novoProduto = await createProduto(produto);
       res.status(StatusCodes.CREATED).json(novoProduto);

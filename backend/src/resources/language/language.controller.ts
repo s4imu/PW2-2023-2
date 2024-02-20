@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { StatusCodes, ReasonPhrases } from 'http-status-codes';
+import { StatusCodes } from 'http-status-codes';
 
 function changeLanguage(req: Request, res: Response) {
   const { lang } = req.body;
