@@ -5,9 +5,18 @@ import router from './router';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import { v4 as uuidv4 } from 'uuid';
+import swaggerUi from 'swagger-ui-express';
+import swaggerFile from './swagger-output.json';
 
 import validateEnv from './utils/validateEnv';
 import setLangCookie from './middlewares/setLangCookie';
+
+declare module 'express-session' {
+  interface SessionData {
+    uid: string;
+    tipoUsuarioId: string;
+  }
+}
 
 dotenv.config();
 validateEnv();
@@ -27,6 +36,7 @@ app.use(
     saveUninitialized: true,
   }),
 );
+app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(router);
 
 app.use('/img', express.static(`${__dirname}/../public/img`));
