@@ -10,7 +10,7 @@
     "lint": "eslint --ext .ts src/",
     "lint:fix": "eslint --fix --ext .ts src/",
     "format": "npx prettier --write src/",
-    "prisma": "docker exec -it loja_backend npx prisma"
+    "prisma": "sudo docker exec -it loja_backend npx prisma"
   },
   "repository": {
     "type": "git",
@@ -55,5 +55,8 @@
     "typescript": "^5.3.3"
   },
   "keywords": [],
-  "description": ""
+  "description": "",
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  }
 }
