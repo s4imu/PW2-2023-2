@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { TiposUsuarios } from 'resources/tipoUsuario/tipoUsuario.constants';
+import { TiposUsuarios } from '../tipoUsuario/tipoUsuario.constants';
 
 const schemaUsuario = Joi.object().keys({
   nome: Joi.string().min(3).max(50).required(),

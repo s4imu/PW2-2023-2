@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { LoginDto, SignupDto } from './auth.types';
-import { createUsuario } from 'resources/usuario/usuario.service';
-import { TiposUsuarios } from 'resources/tipoUsuario/tipoUsuario.constants';
+import { createUsuario } from '../usuario/usuario.service';
+import { TiposUsuarios } from '../tipoUsuario/tipoUsuario.constants';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import { checkCredentials } from './auth.service';
 

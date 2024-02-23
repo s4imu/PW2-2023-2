@@ -20,7 +20,7 @@ router.use(
 router.use('/language', languageRouter);
 router.use(
   '/usuario',
-  // #swagger.tags = ['Usuario']
+  // #swagger.tags = ['Usuario']s
   usuarioRouter,
 );
 router.use(exercicioRouter);
