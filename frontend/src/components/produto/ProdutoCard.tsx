@@ -2,8 +2,10 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
 import Typography from "@mui/material/Typography";
 import { Produto } from "@/types/produto";
 
@@ -24,8 +26,14 @@ export default function ProdutoCard({ produto }: ProdutoCardProps) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <ButtonGroup variant="contained" aria-label="Basic button group">
+          <Button variant="contained" size="small">
+            <AddIcon />
+          </Button>
+          <Button variant="contained" size="small">
+            <RemoveIcon />
+          </Button>
+        </ButtonGroup>
       </CardActions>
     </Card>
   );

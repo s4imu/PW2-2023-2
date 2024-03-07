@@ -12,7 +12,13 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <div>
       <ButtonAppBar />
-      <Component {...pageProps} />
+      <div
+        style={{
+          margin: 20,
+        }}
+      >
+        <Component {...pageProps} />
+      </div>
     </div>
   );
 }
