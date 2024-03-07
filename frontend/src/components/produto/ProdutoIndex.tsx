@@ -1,9 +1,18 @@
-import { getAllProdutos } from "@/fakeDb/produtos";
-import styles from "./produto.module.css";
+import React from "react";
+import { useEffect, useState } from "react";
+
 import Link from "next/link";
 
+import api from "@/utils/api";
+import { Produto } from "@/types/produto";
+import styles from "./produto.module.css";
+
 function ProdutoIndex() {
-  const produtos = getAllProdutos();
+  const [produtos, setProdutos] = useState<Produto[]>([]);
+
+  useEffect(() => {
+    api.get("/produto").then((data) => {});
+  }, []);
   return (
     <div>
       <h1>Produtos</h1>
