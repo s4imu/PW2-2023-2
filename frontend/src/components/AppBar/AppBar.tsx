@@ -30,6 +30,9 @@ export default function ButtonAppBar() {
           <Button component={Link} href="/produto" color="inherit">
             Produtos
           </Button>
+          <Button component={Link} href="/auth/signup" color="inherit">
+            Sign Up
+          </Button>
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
