@@ -1,4 +1,4 @@
-import React from "react";
+import {useContext} from "react";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -9,8 +9,20 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import Link from "next/link";
+import { AuthContext } from "@/provider/AuthProvider";
+import api from "@/utils/api";
+
+import { useRouter } from "../../../node_modules/next/router";
 
 export default function ButtonAppBar() {
+  const router = useRouter();
+  const [auth, setAuth] = useContext(AuthContext)
+  const onLogout = () => {
+    api.post("/logout", undefined, {withCredentials: true}).then((data) =>{
+      setAuth(null);
+      router.push("/produto")
+    })
+  }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -30,10 +42,19 @@ export default function ButtonAppBar() {
           <Button component={Link} href="/produto" color="inherit">
             Produtos
           </Button>
-          <Button component={Link} href="/auth/signup" color="inherit">
+          {!auth && ( <> <Button component={Link} href="/auth/signup" color="inherit">
             Sign Up
           </Button>
-          <Button color="inherit">Login</Button>
+          <Button component={Link} href="/auth/login" color="inherit">
+            Login
+          </Button></>)}
+          {!auth && (
+            <>
+          <Button onclick={onLogout} href="/auth/logout" color="inherit">
+            Logout {auth.nome}
+          </Button></>)}
+            </>
+          )}
         </Toolbar>
       </AppBar>
     </Box>

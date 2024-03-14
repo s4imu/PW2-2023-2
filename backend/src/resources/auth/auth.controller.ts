@@ -30,7 +30,7 @@ const login = async (req: Request, res: Response) => {
         .json(ReasonPhrases.UNAUTHORIZED);
     req.session.uid = usuario.id;
     req.session.tipoUsuarioId = usuario.tipoUsuarioId;
-    res.status(StatusCodes.OK).json(ReasonPhrases.OK);
+    res.status(StatusCodes.OK).json({nome: usuario.nome, tipoUsuario: usuario.tipoUsuarioId === TiposUsuarios.CLIENT ? "client" : "admin"});
   } catch (err) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(err);
   }

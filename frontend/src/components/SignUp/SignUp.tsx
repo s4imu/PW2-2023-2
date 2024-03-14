@@ -5,16 +5,28 @@ import { SignUpDto } from "@/types/auth";
 
 import api from "@/utils/api";
 
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import InputAdornment from '@mui/material/InputAdornment';
+
 import { useRouter } from "next/router";
+import { IconButton, Typography } from "../../../node_modules/@mui/material/index";
 
 function SignUp() {
   const router = useRouter();
   const [nome, setNome] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [senha, setSenha] = useState<string>("");
+  const [confirmSenha, setConfirmSenha] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [viewSenha, setViewSenha] = useState<boolean>(false);
+  const [viewConfirmSenha, setViewConfirmSenha] = useState<boolean>(false);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
+    if (senha != confirmSenha) {
+      setError("as senhas não batem")
+  } else {
     const credenciais: SignUpDto = {
       nome: nome!,
       email: email!,
@@ -23,6 +35,7 @@ function SignUp() {
     api.post("/signup", credenciais).then((data) => {
       router.push("/produto");
     });
+  }
   };
 
   return (
@@ -31,6 +44,7 @@ function SignUp() {
       <form onSubmit={onSubmit}>
         <Box sx={{ mb: 2 }}>
           <TextField
+          sx={{width:300}}
             label="Nome"
             required
             value={nome}
@@ -39,6 +53,7 @@ function SignUp() {
         </Box>
         <Box sx={{ mb: 2 }}>
           <TextField
+          sx={{width:300}}
             label="Email"
             required
             value={email}
@@ -47,12 +62,56 @@ function SignUp() {
         </Box>
         <Box sx={{ mb: 2 }}>
           <TextField
+          sx={{width:300}}
             label="Senha"
+            type={viewSenha ? "text" : "password"}
             required
-            type="password"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
+            InputProps = {{
+              endAdorment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={() => {
+                    setViewSenha(!viewSenha)
+                  }}>
+                    {viewSenha ? <VisibilityIcon/> : <VisibilityOffIcon/>}
+                  
+
+                  </IconButton>
+                  
+                  </InputAdornment>
+              )
+            }}
           ></TextField>
+        </Box>
+                <Box sx={{ mb: 2 }}>
+          <TextField
+          sx={{width:300}}
+            label="Confirme Senha"
+            required
+            type={viewSenha ? "text" : "password"}
+            value={senha}
+            onChange={(e) => setConfirmSenha(e.target.value)}
+            InputProps = {{
+              endAdorment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={() => {
+                    setViewConfirmSenha(!viewConfirmSenha)
+                  }}>
+                    {viewConfirmSenha ? <VisibilityIcon/> : <VisibilityOffIcon/>}
+                  
+
+                  </IconButton>
+                  
+                  </InputAdornment>
+              )
+            }}
+          ></TextField>
+        </Box>
+        <Box>
+          <Typography variant="body1" sx={{color: "red"}}>
+            {error}
+          </Typography>
         </Box>
         <Button variant="contained" type="submit">
           Criar Conta
