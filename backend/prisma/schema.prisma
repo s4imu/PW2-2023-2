@@ -33,7 +33,18 @@ model Produto {
   createdAt DateTime  @default(now()) @map("created_at")
   updateAt DateTime @updatedAt @map("updated_at")
 
+  carrinho Carrinho[]
+
   @@map("produtos")
+}
+
+model Carrinho {
+  id        Int      @id @default(autoincrement())
+  produto   Produto  @relation(fields: [produtoId], references: [id])
+  produtoId String
+  quantidade Int
+
+   @@map("carrinho")
 }
 
 datasource db {
