@@ -10,6 +10,7 @@ import cors from 'cors';
 import swaggerFile from './swagger-output.json';
 import validateEnv from './utils/validateEnv';
 import setLangCookie from './middlewares/setLangCookie';
+import accessLoggerMiddleware from './middlewares/accessLoggerMiddleware';
 import router from './router';
 
 declare module 'express-session' {
@@ -38,6 +39,9 @@ app.use(
     saveUninitialized: true,
   }),
 );
+
+app.use(accessLoggerMiddleware({ format: 'simples' }));
+
 app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(router);
 
