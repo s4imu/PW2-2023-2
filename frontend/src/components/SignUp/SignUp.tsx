@@ -5,12 +5,15 @@ import { SignUpDto } from "@/types/auth";
 
 import api from "@/utils/api";
 
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import InputAdornment from '@mui/material/InputAdornment';
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import InputAdornment from "@mui/material/InputAdornment";
 
 import { useRouter } from "next/router";
-import { IconButton, Typography } from "../../../node_modules/@mui/material/index";
+import {
+  IconButton,
+  Typography,
+} from "../../../node_modules/@mui/material/index";
 
 function SignUp() {
   const router = useRouter();
@@ -25,17 +28,17 @@ function SignUp() {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (senha != confirmSenha) {
-      setError("as senhas não batem")
-  } else {
-    const credenciais: SignUpDto = {
-      nome: nome!,
-      email: email!,
-      senha: senha!,
-    };
-    api.post("/signup", credenciais).then((data) => {
-      router.push("/produto");
-    });
-  }
+      setError("as senhas não batem");
+    } else {
+      const credenciais: SignUpDto = {
+        nome: nome!,
+        email: email!,
+        senha: senha!,
+      };
+      api.post("/signup", credenciais).then((data) => {
+        router.push("/produto");
+      });
+    }
   };
 
   return (
@@ -44,7 +47,7 @@ function SignUp() {
       <form onSubmit={onSubmit}>
         <Box sx={{ mb: 2 }}>
           <TextField
-          sx={{width:300}}
+            sx={{ width: 300 }}
             label="Nome"
             required
             value={nome}
@@ -53,7 +56,7 @@ function SignUp() {
         </Box>
         <Box sx={{ mb: 2 }}>
           <TextField
-          sx={{width:300}}
+            sx={{ width: 300 }}
             label="Email"
             required
             value={email}
@@ -62,54 +65,56 @@ function SignUp() {
         </Box>
         <Box sx={{ mb: 2 }}>
           <TextField
-          sx={{width:300}}
+            sx={{ width: 300 }}
             label="Senha"
             type={viewSenha ? "text" : "password"}
             required
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
-            InputProps = {{
-              endAdorment: (
+            InputProps={{
+              endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton onClick={() => {
-                    setViewSenha(!viewSenha)
-                  }}>
-                    {viewSenha ? <VisibilityIcon/> : <VisibilityOffIcon/>}
-                  
-
+                  <IconButton
+                    onClick={() => {
+                      setViewSenha(!viewSenha);
+                    }}
+                  >
+                    {viewSenha ? <VisibilityIcon /> : <VisibilityOffIcon />}
                   </IconButton>
-                  
-                  </InputAdornment>
-              )
+                </InputAdornment>
+              ),
             }}
           ></TextField>
         </Box>
-                <Box sx={{ mb: 2 }}>
+        <Box sx={{ mb: 2 }}>
           <TextField
-          sx={{width:300}}
+            sx={{ width: 300 }}
             label="Confirme Senha"
             required
-            type={viewSenha ? "text" : "password"}
-            value={senha}
+            type={viewConfirmSenha ? "text" : "password"}
+            value={confirmSenha}
             onChange={(e) => setConfirmSenha(e.target.value)}
-            InputProps = {{
-              endAdorment: (
+            InputProps={{
+              endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton onClick={() => {
-                    setViewConfirmSenha(!viewConfirmSenha)
-                  }}>
-                    {viewConfirmSenha ? <VisibilityIcon/> : <VisibilityOffIcon/>}
-                  
-
+                  <IconButton
+                    onClick={() => {
+                      setViewConfirmSenha(!viewConfirmSenha);
+                    }}
+                  >
+                    {viewConfirmSenha ? (
+                      <VisibilityIcon />
+                    ) : (
+                      <VisibilityOffIcon />
+                    )}
                   </IconButton>
-                  
-                  </InputAdornment>
-              )
+                </InputAdornment>
+              ),
             }}
           ></TextField>
         </Box>
         <Box>
-          <Typography variant="body1" sx={{color: "red"}}>
+          <Typography variant="body1" sx={{ color: "red" }}>
             {error}
           </Typography>
         </Box>

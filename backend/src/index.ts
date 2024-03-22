@@ -25,7 +25,7 @@ validateEnv();
 const PORT = process.env.PORT ?? 3344;
 const app = express();
 
-app.use(cors({credentials: true, origin: "http://localhost"}));
+app.use(cors({ credentials: true, origin: 'http://localhost:4466' }));
 app.use(morgan('combined'));
 app.use(express.json());
 app.use(cookieParser());
